@@ -1,1 +1,76 @@
-//
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Galada&display=swap');
+@import "~vue-wysiwyg/dist/vueWysiwyg.css";
+
+html , body {
+    margin : 0px !important ; 
+    padding : 0px !important;
+}
+
+.bg-nav {
+    background-color:rgb(0, 7, 31) !important;
+}
+.menu-link {
+    color : #fff !important;
+    font-family : 'Roboto Slab', arial !important;
+}
+
+.menu-link:hover {
+    font-weight: bold !important;
+}
+
+.para-header {
+    color : #fff !important;
+}
+
+.con-header {
+    color : #fff !important;
+    font-size : 1.5em !important;
+}
+
+.secon-header {
+    color : #fff !important;
+    padding-top : 100px !important;
+}
+
+.service-header {
+    color : #fff !important;
+    padding-top : 50px !important;
+    font-size : 5rem !important;
+}
+
+.style-text-font {
+    font-family: 'Galada', cursive;
+    font-size : 1.5em !important;
+}
+
+
+.contact-btn {
+    position : fixed;
+    bottom : 0 ;
+    right : 0;
+    margin-right : 2rem ;
+    margin-bottom : 2rem ;
+}
+
+.contact-form {
+    position : fixed;
+    right : 0;
+    bottom : 0;
+    background : rgba(255,255,255,1);
+    padding : 1rem;
+    margin-right : 1rem;
+    margin-bottom : 1rem;
+    z-index : 1 !important;
+}
+
+.to-top-btn {
+    position : fixed;
+    bottom : 1rem ;
+    right : 0 ;
+    margin : 1rem;
+    border-radius : 1rem !important;
+    background : rgba(0,0,0,0.7);
+    color : #fff !important;
+    z-index: 1 !important;
+}
