@@ -28,4 +28,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/get-sections','HomeController@getSection');
     Route::post('/add-sous-section','HomeController@addSousSection');
     Route::post('/edit-sous-section','HomeController@makeEditRequest');
+    Route::post('/edit-section','HomeController@makeEditSectionRequest');
 });

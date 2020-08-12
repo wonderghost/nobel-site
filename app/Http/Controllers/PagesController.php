@@ -38,7 +38,7 @@ class PagesController extends Controller
 
     public function getSection(Sections $s) {
         try {
-            $sections = $s->all();
+            $sections = $s->select()->orderBy('position','asc')->get();
             $all = [];
             foreach($sections as $key => $value) {
                 // $ssections = $value->

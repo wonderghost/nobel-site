@@ -2,12 +2,11 @@
     <div>
         <nav class="uk-navbar-container bg-nav uk-box-shadow-small" uk-sticky="animation: uk-animation-slide-top " uk-navbar>
             <div class="uk-navbar-left">
-                <a style="color : #fff !important" class="uk-navbar-item uk-logo" href="/"><img src="/img/logo-1.png" alt=""></a>
+                <a style="color : #000 !important" class="uk-navbar-item uk-logo" href="/"><img src="/img/logo.png" alt=""></a>
             </div>
             <div class="uk-navbar-left uk-visible@m">
                 <ul class="uk-navbar-nav">
-                    <li><a href="/" class="menu-link"><span uk-icon="home"></span></a></li>
-                    
+                    <!-- <li><a href="/" class="menu-link"><span uk-icon="home"></span></a></li> -->
                     <li v-for="i in withParent" :key="i.section.slug">
                         <a class="menu-link uk-padding-small" :href="'/section/'+i.section.slug">{{i.section.title}}</a>
                         <div class="uk-border-rounded" uk-dropdown="offset: 0" v-if="i.sous_section.length > 0">   

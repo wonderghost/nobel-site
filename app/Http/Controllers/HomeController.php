@@ -30,11 +30,41 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function makeEditSectionRequest(Request $request) {
+        try {
+            $validation = $request->validate([
+                'title' =>  'required',
+                'position'  =>  'required|numeric'
+            ]);
+
+            $data = Sections::find($request->input('slug'));
+            $data->position = $request->input('position');
+            $data->title = $request->input('title');
+            $data->save();
+
+            return response()
+                ->json('done');            
+        } catch(myException $e) {
+            header("Erreur",true,422);
+            die(json_encode($e->getMessage()));
+        }
+    }
+
     public function makeEditRequest(Request $request) {
         try {
+            $validation = $request->validate([
+                'title' =>  'required',
+            ]);
             $data = SousSections::find($request->input('slug'));
             $data->title = $request->input('title');
             $data->description = $request->input('description');
+            $data->position = $request->input('position');
+
+            if($request->input('deleteState')) {
+                $data->delete();
+                return response()
+                    ->json('done');
+            }
 
             if($request->hasFile('illustration')) {
                 $extension = $request->file('image')->getClientOriginalExtension();
@@ -43,7 +73,7 @@ class HomeController extends Controller
                 if($request->file('image')->move(config('illustration.path'),$data->illustration)) {
                     $data->save();
                 } else {
-                    throw new AppException("Erreur de telechargement de l'image!");
+                    throw new myException("Erreur de telechargement de l'image!");
                 }
             }
             $data->save();
@@ -58,7 +88,7 @@ class HomeController extends Controller
 
     public function getSection(Sections $s) {
         try {
-            $sections = $s->all();
+            $sections = $s->select()->orderBy('position','asc')->get();
             $all = [];
             foreach($sections as $key => $value) {
                 // $ssections = $value->

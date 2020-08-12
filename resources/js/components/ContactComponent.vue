@@ -26,7 +26,7 @@
                 <label for="">Message *</label>
                 <textarea v-model="dataForm.message" class="uk-textarea uk-border-rounded" cols="30" rows="10"></textarea>
             </div>
-            <button type="submit" class="uk-button uk-button-small uk-border-rounded uk-button-primary">Envoyez</button>
+            <button type="submit" class="uk-button uk-button-small uk-border-rounded btn-bg uk-text-capitalize">Envoyez</button>
         </form>        
     </div>
 </template>

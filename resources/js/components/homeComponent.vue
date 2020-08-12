@@ -3,7 +3,7 @@
   <!--  -->
     <div class="">
         <flux-parallax
-        src="/img/ban.jpg"
+        src="/img/ban.jpeg"
         type="relative"
         offset="300%"
         style="height:500px;">
@@ -22,11 +22,11 @@
         <h3>A propos</h3>
         <p v-html="aboutUs[0].sous_section[0].description.substring(0,900)">...</p>
         
-        <a v-if="aboutUs[0]" :href="'/section/'+aboutUs[0].section.slug" class="uk-button uk-text-capitalize  uk-border-rounded uk-button-primary">En savoir Plus <span uk-icon="icon : arrow-right"></span></a>
+        <a v-if="aboutUs[0]" :href="'/section/'+aboutUs[0].section.slug" class="uk-button uk-button-small uk-text-capitalize  uk-border-rounded btn-bg">En savoir Plus <span uk-icon="icon : arrow-right"></span></a>
     </div>
 <!-- TOUS NOS SERVICES -->
     <flux-parallax
-    src="/img/ban.jpg"
+    src="/img/ban.jpeg"
     type="relative"
     offset="100%"
     style="height:200px;">
@@ -44,7 +44,7 @@
                         <div :uk-scrollspy-class="scrollAnimation[index]" style="box-shadow : none !important" v-for="(s,index) in services[0].sous_section.slice(0,4)" :key="index" class="uk-card uk-card-default uk-card-body uk-border-rounded">
                             <h4>{{s.title}}</h4>
                             <p v-html="s.description.substring(0,200)">...</p>
-                            <a :href="'/section/'+services[0].section.slug+'#'+s.slug" class="uk-button uk-text-capitalize">En savoir plus <span uk-icon="icon : arrow-right"></span></a>
+                            <a :href="'/section/'+services[0].section.slug+'#'+s.slug" class="uk-button uk-button-small uk-border-rounded uk-text-capitalize btn-bg">En savoir plus <span uk-icon="icon : arrow-right"></span></a>
                         </div>
                     </template>
                 </div>
@@ -63,7 +63,8 @@
                 <div class="uk-grid-small" uk-grid>
                     <div class="uk-width-2-3@m uk-width-1-1@s">
                         <!-- MAPS -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d995.4841106410481!2d-13.661288253383795!3d9.547774946840587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf1cd1331c633d57%3A0x8558b37657f954e9!2sMadina%2C%20Conakry%2C%20Guin%C3%A9e!5e1!3m2!1sfr!2s!4v1595123368054!5m2!1sfr!2s" width="900" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d995.4841106410481!2d-13.661288253383795!3d9.547774946840587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf1cd1331c633d57%3A0x8558b37657f954e9!2sMadina%2C%20Conakry%2C%20Guin%C3%A9e!5e1!3m2!1sfr!2s!4v1595123368054!5m2!1sfr!2s" width="900" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15738.65334502074!2d-13.676554772469995!3d9.537949740700983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf1cd1331c633d57%3A0x8558b37657f954e9!2sMadina%2C%20Conakry%2C%20Guin%C3%A9e!5e0!3m2!1sfr!2s!4v1597257772872!5m2!1sfr!2s" width="900" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                         <!-- // -->
                     </div>
                 <div class="uk-width-1-3@m uk-width-1-1@s uk-margin-remove">

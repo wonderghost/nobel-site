@@ -10,12 +10,39 @@
             <li><a href="#" class="uk-button uk-button-small uk-button-primary uk-border-rounded" style="color : #fff">Ajouter une sous section</a></li>
         </ul>
 
+        <!-- MODAL EDIT SECTION -->
+        <div id="modal-edit-section" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <h2 class="uk-modal-title">Section</h2>
+                <form @submit.prevent="sendEditSectionRequest()" uk-grid class="uk-grid-small">
+                  <div class="uk-width-1-1@m uk-margin-small">
+                    <label for="">Titre *</label>
+                    <input v-model="editSectionData.title" type="text" class=" uk-input uk-border-rounded" placeholder="Titre de la section">
+                  </div>
+                  <div class="uk-width-1-3@m uk-margin-small">
+                    <label for="">Position</label>
+                    <input type="number" v-model="editSectionData.position" class="uk-input uk-border-rounded">
+                  </div>
+                  <div class="uk-width-1-1@m">
+                    <button type="submit" class="uk-button uk-button-small uk-button-primary uk-border-rounded">Validez</button>                  
+                  </div>
+                </form>
+                <p class="uk-text-right">
+                    <button class="uk-button uk-button-small uk-button-danger uk-border-rounded uk-modal-close" type="button">Fermer</button>
+                </p>
+            </div>
+        </div> 
+        <!-- // -->
         <!-- MODAL EDIT SOUS SECTION -->
         <!-- This is the modal -->
         <div id="modal-edit" uk-modal>
             <div class="uk-modal-dialog uk-modal-body">
                 <h2 class="uk-modal-title">Sous section</h2>
                 <form @submit.prevent="sendEditRequest()" uk-grid class="uk-grid-small">
+                  <div class="uk-width-1-1@m">
+                    <input type="checkbox" value="delete" v-model="editFormData.deleteState">
+                    <span class="uk-alert-danger">Supprimer</span>
+                  </div>
                   <div class="uk-width-1-1@m uk-margin-small">
                     <label for="">Titre *</label>
                     <input v-model="editFormData.title" type="text" class=" uk-input uk-border-rounded" placeholder="Titre de la section">
@@ -23,6 +50,10 @@
                   <div class="uk-width-1-1@m uk-margin-small">
                     <label for="">Section *</label>
                     <span class="uk-input uk-border-rounded">{{editFormData.id_section}}</span>
+                  </div>
+                  <div class="uk-width-1-3@m uk-margin-small">
+                    <label for="">Position</label>
+                    <input type="number" v-model="editFormData.position" class="uk-input uk-border-rounded" placeholder="Position">
                   </div>
                   <div class="uk-margin-small">
                     <input type="file" @change="editFileUpdload()">
@@ -32,7 +63,9 @@
                     <label for="">Description *</label>
                     <wysiwyg v-model="editFormData.description" />
                   </div>
-                  <button type="submit" class="uk-button uk-button-small uk-button-primary uk-border-rounded">Validez</button>                  
+                  <div class="uk-width-1-1@m">
+                    <button type="submit" class="uk-button uk-button-small uk-button-primary uk-border-rounded">Validez</button>                  
+                  </div>
                 </form>
                 <p class="uk-text-right">
                     <button class="uk-button uk-button-small uk-button-danger uk-border-rounded uk-modal-close" type="button">Fermer</button>
@@ -47,6 +80,7 @@
               <ul uk-accordion>
                   <li v-for="s in sousSectionList" :key="s.section.slug" class="uk-close">
                       <a class="uk-accordion-title" href="#">{{s.section.title}}</a>
+                      <a class="uk-button-small" @click="editSection(s.section)"><span uk-icon="pencil"></span> Editer</a>
                       <div class="uk-accordion-content">
                         <ul class="uk-list">
                           <li v-for="ss in s.sous_section" :key="ss.slug"><a @click="editSSection(ss)" href="#">{{ss.title}}</a></li>
@@ -121,7 +155,8 @@ export default {
       sousSectionList : [],
       errors : [],
       activeSection : "",
-      editFormData : {}
+      editFormData : {},
+      editSectionData : {}
     }
   },
   methods : {
@@ -132,6 +167,10 @@ export default {
       } catch(error) {
           alert(error)
       }
+    },
+    editSection : function (s) {
+      this.editSectionData = s
+      UIkit.modal($("#modal-edit-section")).show()
     },
     editFileUpdload : function (e) {
       this.editFormData.illustration = e.target.files[0]
@@ -148,6 +187,36 @@ export default {
           }
       } catch(error) {
           alert(error)
+      }
+    },
+    sendEditSectionRequest : async function () {
+      try {
+        this.isLoading = true
+        UIkit.modal($("#modal-edit-section")).hide()
+        let response = await axios.post('/edit-section',{
+          _token : document.querySelector("meta[name=csrf-token").content,
+          title : this.editSectionData.title,
+          position : this.editSectionData.position,
+          slug : this.editSectionData.slug
+        })
+        if(response && response.data == 'done') {
+          this.isLoading = false
+          UIkit.modal($("#modal-edit-section")).hide()
+          alert("Success")
+          Object.assign(this.$data,this.$options.data())
+          this.sectionList()
+        }
+
+      } catch(error) {
+          this.isLoading = false 
+          if(error.response.data.errors) {
+            let errorTab = error.response.data.errors
+            for (var prop in errorTab) {
+                this.errors.push(errorTab[prop][0])
+            }
+        } else {
+            this.errors.push(error.response.data)
+        }
       }
     },
     sendEditRequest : async function () {

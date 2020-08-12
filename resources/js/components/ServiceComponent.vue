@@ -23,10 +23,11 @@
             </div>
         </div>
 
-        <div v-for="(ss,index) in serviceData.sous_service" :key="index" class="uk-section uk-section-default" :id="ss.slug">
-            <div class="uk-container">
-                <div class="uk-grid-small" uk-grid>
-                    <template v-if="index % 2 == 0">
+        <div v-for="(ss,index) in serviceData.sous_service" :key="index" :id="ss.slug">
+            <div v-if="index % 2 == 0" class="uk-section uk-section-muted">
+                <div class="uk-container">
+                    <div class="uk-grid-small" uk-grid>
+                        
                         <div class="uk-width-1-2@m">
                             <h2>{{ss.title}}</h2>
                             <p v-html="ss.description"></p>
@@ -34,8 +35,14 @@
                         <div class="uk-width-1-2@m">
                             <img :src="'/illustration-img/'+ss.illustration" class="uk-border-rounded" alt="" style="width : 100% !important;">
                         </div>
-                    </template>
-                    <template v-else>
+                        
+                    </div>
+                </div>
+            </div>
+            <div v-else class="uk-section uk-section-default">
+                <div class="uk-container">
+                    <div class="uk-grid-small" uk-grid>
+                    
                         <div class="uk-width-1-2@m">
 
                         </div>
@@ -43,7 +50,8 @@
                             <h2>{{ss.title}}</h2>
                             <p v-html="ss.description"></p>
                         </div>
-                    </template>
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,7 +93,8 @@ export default {
     data() {
         return {
             serviceData : {},
-            contactFormState : false
+            contactFormState : false,
+            classData : ['uk-section-default','uk-section-muted']
         }
     },
     methods : {

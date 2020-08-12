@@ -13,6 +13,6 @@ class Sections extends Model
     
 
     public function sousSections() {
-        return $this->hasMany('App\SousSections','id_section','slug')->get();
+        return $this->hasMany('App\SousSections','id_section','slug')->orderBy('position','asc')->get();
     }
 }
