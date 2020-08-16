@@ -8,8 +8,6 @@ html , body {
 }
 
 .bg-nav {
-    // background-color:rgb(0, 145, 208,0.1) !important;
-    // background-color : #0091d0 !important;
     background-color : #fff !important;
 }
 .btn-bg {
@@ -28,6 +26,10 @@ html , body {
     font-weight: bold !important;
 }
 
+.menu-responsive-link {
+    color : #fff !important;
+    font-family : 'Roboto Slab', arial !important;
+}
 .para-header {
     color : #fff !important;
 }
@@ -83,4 +85,16 @@ html , body {
     background : rgba(0,0,0,0.7);
     color : #fff !important;
     z-index: 1 !important;
+}
+
+.maps-class {
+    width : 900px !important;
+}
+
+
+
+@media only screen and (min-width : 960px ) and (max-width : 1400px) {
+    .maps-class {
+        width : 550px !important;
+    }
 }

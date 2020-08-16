@@ -35,18 +35,18 @@
             </div>
             <!-- mobile menu -->
             <div class="uk-navbar-right uk-hidden@m">
-                <a class="uk-button uk-button-default uk-border-rounded uk-margin-right" uk-toggle="target: #offcanvas-nav" style="color : #fff !important;"><span uk-icon="menu"></span></a>
+                <a class="uk-button uk-button-default uk-border-rounded uk-margin-right" uk-toggle="target: #offcanvas-nav"><span uk-icon="menu"></span></a>
             </div>
 
             <div id="offcanvas-nav" uk-offcanvas="overlay: true;mode : slide ; flip : true ;">
                 <div class="uk-offcanvas-bar">
 
                     <ul class="uk-nav uk-nav-default">
-                        <li><a href="/" class="menu-link">Acceuil</a></li>
+                        <li><a href="/" class="menu-responsive-link">Acceuil</a></li>
                         <li v-for="i in withParent" :key="i.section.slug" class="uk-parent">
-                        <a class="menu-link" :href="'/section/'+i.section.slug">{{i.section.title}}</a>
+                        <a class="menu-responsive-link" :href="'/section/'+i.section.slug">{{i.section.title}}</a>
                         <ul class="uk-nav-sub" v-if="i.sous_section.length > 0">
-                            <li class="" v-for="k in i.sous_section" :key="k.slug"><a class="menu-link" :href="'/section/'+i.section.slug+'#'+k.slug"><span uk-icon="icon : link"></span> {{k.title}}</a></li>
+                            <li class="" v-for="k in i.sous_section" :key="k.slug"><a class="menu-responsive-link" :href="'/section/'+i.section.slug+'#'+k.slug"><span uk-icon="icon : link"></span> {{k.title}}</a></li>
                         </ul>
                     </li>
                     </ul>
